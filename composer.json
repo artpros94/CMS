@@ -1,0 +1,17 @@
+{
+    "name": "artem/cms",
+    "autoload": {
+        "psr-4": {
+            "Engine\\": "engine",
+            "Cms\\": "cms",
+            "Engine\\DI\\": "engine/DI"
+        }
+    },
+    "authors": [
+        {
+            "name": "Artem Prostakishyn",
+            "email": "prostakishyn.artem94@gmail.com"
+        }
+    ],
+    "require": {}
+}
