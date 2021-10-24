@@ -4,6 +4,7 @@
         "psr-4": {
             "Engine\\": "engine",
             "Cms\\": "cms",
+            "Admin\\": "admin",
             "Engine\\DI\\": "engine/DI"
         }
     },
