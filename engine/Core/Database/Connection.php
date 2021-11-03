@@ -19,24 +19,26 @@ class Connection
 
      /**
      * @param $sql
+     * @param array $values
      * @return mixed
      */
-    public function execute($sql)
+    public function execute($sql, $values = [])
     {
         $sth = $this->link->prepare($sql);
-
-        return $sth->execute();
+     
+        return $sth->execute($values);
     }
 
     /**
      * @param $sql
+     * @param array $values
      * @return array
      */
-    public function query($sql)
+    public function query($sql, $values = [])
     {
         $sth = $this->link->prepare($sql);
-
-        $sth->execute($sql);
+ 
+        $sth->execute($values);
 
         $result = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -54,11 +56,9 @@ class Connection
     {
         $config = Config::file('database');
 
-
         $dsn = 'mysql:host='.$config['host'].';dbname='.$config['db_name'].';charset='.$config['charset'];
-
+        
         $this->link = new PDO($dsn, $config['username'], $config['password']);
-
         return $this;
     }
 

@@ -34,7 +34,7 @@ class Cms
             require_once __DIR__ .'/../' . mb_strtolower(ENV). '/Route.php';
     
             $routerDispatch = $this->router->dispatch(Common::getMethod(), Common::getPathUrl());
-    
+            
             if($routerDispatch == null)
             {
                 $routerDispatch = new DispatchedRoute('ErrorController:page404');
@@ -44,7 +44,6 @@ class Cms
     
             $controller = '\\' . ENV . '\\Controller\\' . $class;
             $parameters = $routerDispatch->getParameters();
-
             call_user_func_array([new $controller($this->di), $action], $parameters); 
 
         } catch(\Exception $e){

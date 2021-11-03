@@ -35,7 +35,7 @@ class Cookie
      */
     public static function delete($key)
     {
-        if ( isset($_COOKIE[$ley])) {
+        if ( isset($_COOKIE[$key])) {
             self::set($key, '', -3600);
             unset($_COOKIE[$key]);
         }

@@ -2,7 +2,7 @@
 
 namespace Engine\Core\Auth;
 
-use Engine\Core\Cookie;
+use Engine\Helper\Cookie;
 
 class Auth implements AuthInterface
 {
@@ -10,7 +10,7 @@ class Auth implements AuthInterface
      * @var bool
      */
     protected $authorized = false;
-    protected $user;
+    protected $hash_user;
 
     /**
      * @return bool
@@ -23,35 +23,29 @@ class Auth implements AuthInterface
     /**
      * @return mixed
      */
-    public function user()
+    public function hashUser()
     {
-        return $this->user;
+        return Cookie::get('auth_user');
     }
 
     /**
      * User authorization
      * @param $user
      */
-    public function autorize($user)
+    public function authorize($user)
     {
-        Cookie::set('auth.authorized', true);
-        Cookie::set('auth.user', $user);
-
-        $this->authorized = true;
-        $this->user       = $user;
+        Cookie::set('auth_authorized', true);
+        Cookie::set('auth_user', $user);
     }
 
     /**
      * User unautorization
      * @return void
      */
-    public function unAutorize()
+    public function unAuthorize()
     {
-        Cookie::delete('auth.authorized');
-        Cookie::delete('auth.user');
-
-        $this->authorized = false;
-        $this->user       = null;
+        Cookie::delete('auth_authorized');
+        Cookie::delete('auth_user');
     }
 
     /**
